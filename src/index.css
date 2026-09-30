@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   THEME TINT LAYER
+   The portfolio accent is a single green scale (emerald → teal → cyan).
+   The `indigo` / `violet` / `sky` / `fuchsia` colour families are re-mapped
+   here so the entire site can be re-tinted from one place.
+--------------------------------------------------------------------------- */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Primary accent → emerald */
+  --color-indigo-50: #ecfdf5;
+  --color-indigo-100: #d1fae5;
+  --color-indigo-200: #a7f3d0;
+  --color-indigo-300: #6ee7b7;
+  --color-indigo-400: #34d399;
+  --color-indigo-500: #10b981;
+  --color-indigo-600: #059669;
+  --color-indigo-700: #047857;
+  --color-indigo-800: #065f46;
+  --color-indigo-900: #064e3b;
+
+  /* Secondary accent → teal */
+  --color-violet-50: #f0fdfa;
+  --color-violet-100: #ccfbf1;
+  --color-violet-200: #99f6e4;
+  --color-violet-300: #5eead4;
+  --color-violet-400: #2dd4bf;
+  --color-violet-500: #14b8a6;
+  --color-violet-600: #0d9488;
+  --color-violet-700: #0f766e;
+
+  /* Tertiary accent → cyan */
+  --color-sky-100: #cffafe;
+  --color-sky-200: #a5f3fc;
+  --color-sky-300: #67e8f9;
+  --color-sky-400: #22d3ee;
+  --color-sky-500: #06b6d4;
+  --color-sky-600: #0891b2;
+
+  --color-fuchsia-400: #2dd4bf;
+  --color-fuchsia-500: #14b8a6;
+
+  /* Brand gradient stops (used by arbitrary-value gradients) */
+  --brand-1: #059669;
+  --brand-2: #0d9488;
+  --brand-3: #06b6d4;
+  --brand-soft: #34d399;
+
+  --shadow-glass: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: rgba(16, 185, 129, 0.2);
+    color: #0f172a;
+  }
+
+  :focus-visible {
+    outline: 2px solid #059669;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #a7f3d0, #34d399);
+    border-radius: 999px;
+    border: 2px solid #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #34d399, #10b981);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
+  }
+
+  .glass-soft {
+    background: rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.06);
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, #059669 0%, #0d9488 42%, #06b6d4 82%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .brand-gradient {
+    background-image: linear-gradient(110deg, #059669 0%, #0d9488 45%, #06b6d4 100%);
+  }
+
+  .gradient-line {
+    background: linear-gradient(
+      90deg,
+      rgba(16, 185, 129, 0) 0%,
+      rgba(16, 185, 129, 0.7) 20%,
+      rgba(13, 148, 136, 0.8) 50%,
+      rgba(6, 182, 212, 0.7) 80%,
+      rgba(16, 185, 129, 0) 100%
+    );
+    background-size: 220% 100%;
+    animation: line-flow 7s linear infinite;
+  }
+
+  .grid-faint {
+    background-image:
+      linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes line-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 220% 50%;
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.animate-dash {
+  stroke-dasharray: 6 8;
+  animation: dash-flow 8s linear infinite;
+}
+
+.animate-ring {
+  animation: pulse-ring 3.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
